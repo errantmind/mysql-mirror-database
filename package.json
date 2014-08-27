@@ -12,11 +12,8 @@
     "type": "git",
     "url": "git://github.com/errantmind/mysql-mirror-database.git"
   },
-  "version": "0.0.2",
+  "version": "0.0.5",
   "private": false,
-  "scripts": {
-    "start": "node app.js"
-  },
   "dependencies": {
     "mysql": "2.x",
     "co":"3.x"
