@@ -18,7 +18,7 @@ var remotedb_json = {
     host: 'some_ip',
     port: 'some_port',
     user: 'some_user',
-    password: 'some_passoword',
+    password: 'some_password',
     database: 'some_database'
 };
 
@@ -27,7 +27,7 @@ var destinationdb_json = {
     host: 'another_ip',
     port: 'another_port',
     user: 'another_user',
-    password: 'another_passoword',
+    password: 'another_password',
     database: 'another_database'
 };
 
