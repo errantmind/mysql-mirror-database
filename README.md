@@ -38,5 +38,6 @@ var destinationdb_json = {
     database: 'another_database'
 };
 
+// Note, 'event_number' below is the common autoincrement field
 new require('mysql-mirror-database')(remotedb_json, destinationdb_json, 'event_number');
 ```
