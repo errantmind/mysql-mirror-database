@@ -90,7 +90,7 @@ function insertRecords(db, table_name, records) {
     };
 }
 
-module.exports = co(function* (remotedb_connection, localdb_connection) {
+module.exports = co(function* (remotedb_connection, localdb_connection, autoincrement_col_name) {
     var remotedb_tables = [],
         localdb_tables = [],
         local_tables_to_create = [],
@@ -134,19 +134,19 @@ module.exports = co(function* (remotedb_connection, localdb_connection) {
     console.log('+ Got updated list of tables from local db');
 
     for (i in localdb_tables) {
-        localdb_tables_max_id[localdb_tables[i]] = yield getMaxTableId(localdb, localdb_tables[i], 'event_number');
+        localdb_tables_max_id[localdb_tables[i]] = yield getMaxTableId(localdb, localdb_tables[i], autoincrement_col_name);
     }
     console.log('+ Got max ids from each table in local db');
 
     for (i in remotedb_tables) {
-        remotedb_tables_max_id[remotedb_tables[i]] = yield getMaxTableId(remotedb, remotedb_tables[i], 'event_number');
+        remotedb_tables_max_id[remotedb_tables[i]] = yield getMaxTableId(remotedb, remotedb_tables[i], autoincrement_col_name);
     }
     console.log('+ Got max ids from each table in remote db');
 
     var records;
     for (i in remotedb_tables_max_id) {
         if(remotedb_tables_max_id[i] > localdb_tables_max_id[i]) {
-            records = yield selectRecords(remotedb, i, 'event_number', localdb_tables_max_id[i]);
+            records = yield selectRecords(remotedb, i, autoincrement_col_name, localdb_tables_max_id[i]);
             yield insertRecords(localdb, i, records);
         }
     }

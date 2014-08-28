@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git://github.com/errantmind/mysql-mirror-database.git"
   },
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": false,
   "dependencies": {
     "mysql": "2.x",
